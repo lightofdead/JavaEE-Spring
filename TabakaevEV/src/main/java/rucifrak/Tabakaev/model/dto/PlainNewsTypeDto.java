@@ -5,6 +5,7 @@ import rucifrak.Tabakaev.model.NewsType;
 public class PlainNewsTypeDto {
     private Long id;
     private String name;
+    private String color;
 
     public PlainNewsTypeDto() {
     }
@@ -13,6 +14,7 @@ public class PlainNewsTypeDto {
         PlainNewsTypeDto plainNewsTypeDto = new PlainNewsTypeDto();
         plainNewsTypeDto.setId(newsType.getId());
         plainNewsTypeDto.setName(newsType.getName());
+        plainNewsTypeDto.setColor(newsType.getColor());
         return plainNewsTypeDto;
     }
 
@@ -28,7 +30,17 @@ public class PlainNewsTypeDto {
         return name;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
+
+
 }

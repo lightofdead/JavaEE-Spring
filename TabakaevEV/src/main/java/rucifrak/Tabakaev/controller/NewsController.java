@@ -41,9 +41,9 @@ public class NewsController {
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<NewsDto> deleteSomeNews(@PathVariable final Long id){
+    public String deleteSomeNews(@PathVariable final Long id){
         News news = newsService.deleteNews(id);
-        return new ResponseEntity<>(NewsDto.from(news), HttpStatus.OK);
+        return "Новость удалена";
     }
 
     @PutMapping(value = "{id}")

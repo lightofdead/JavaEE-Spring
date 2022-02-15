@@ -44,6 +44,8 @@ public class NewsService {
     public News editNews(Long id,News news){
         News newsToEdit = getNewsById(id);
         newsToEdit.setName(news.getName());
+        newsToEdit.setShortDesc(news.getShortDesc());
+        newsToEdit.setLongDesc(news.getLongDesc());
         return newsToEdit;
     }
 

@@ -50,6 +50,7 @@ public class NewsTypeService {
     public NewsType editNewsType(Long id, NewsType newsType){
         NewsType newsTypeToEdit = getNewsType(id);
         newsTypeToEdit.setName(newsType.getName());
+        newsTypeToEdit.setColor(newsType.getColor());
         return newsTypeToEdit;
     }
 

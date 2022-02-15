@@ -17,6 +17,7 @@ public class NewsType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private  String name;
+    private String color;
     @OneToMany
     @JoinColumn(name="news_type_id")
     private List<News> newsList = new ArrayList<>();
@@ -24,14 +25,11 @@ public class NewsType {
     public NewsType() {
     }
 
-    public NewsType(String name, List<News> newsList) {
-        this.name = name;
-        this.newsList = newsList;
-    }
 
     public static NewsType from(NewsTypeDto newsTypeDto){
         NewsType newsType = new NewsType();
         newsType.setName(newsTypeDto.getName());
+        newsType.setColor(newsTypeDto.getColor());
         return newsType;
     }
 
@@ -57,6 +55,14 @@ public class NewsType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public List<News> getNewsList() {

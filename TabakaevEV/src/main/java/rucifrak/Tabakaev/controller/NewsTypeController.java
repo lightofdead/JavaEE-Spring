@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import rucifrak.Tabakaev.model.NewsType;
 /*import rucifrak.Tabakaev.model.dto.NewsDto;*/
 import rucifrak.Tabakaev.model.dto.NewsTypeDto;
+import rucifrak.Tabakaev.model.dto.PlainNewsTypeDto;
 import rucifrak.Tabakaev.service.NewsTypeService;
 
 import java.util.List;
@@ -30,11 +31,12 @@ public class NewsTypeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<NewsTypeDto>> getNews(){
+    public ResponseEntity<List<PlainNewsTypeDto>> getNews(){
         List<NewsType> newsList = newsTypeService.getNewsTypes();
-        List<NewsTypeDto> newsTypesDto = newsList.stream().map(NewsTypeDto::from)
-                .collect(Collectors.toList());
-        return new ResponseEntity<>(newsTypesDto, HttpStatus.OK);
+        /*List<NewsTypeDto> newsTypesDto = newsList.stream().map(NewsTypeDto::from)
+                .collect(Collectors.toList());*/
+        List<PlainNewsTypeDto> plainNewsTypeDtos = newsList.stream().map(PlainNewsTypeDto::from).collect(Collectors.toList());
+        return new ResponseEntity<>(plainNewsTypeDtos, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
@@ -44,9 +46,10 @@ public class NewsTypeController {
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<NewsTypeDto> deleteNewsTypes(@PathVariable final Long id){
+    public String deleteNewsTypes(@PathVariable final Long id){
         NewsType newsType = newsTypeService.deleteNewsType(id);
-        return  new ResponseEntity<>(NewsTypeDto.from(newsType), HttpStatus.OK);
+        //return  new ResponseEntity<>(NewsTypeDto.from(newsType), HttpStatus.OK);
+        return "Тип новости удален";
     }
 
     @PutMapping(value = "{id}")
